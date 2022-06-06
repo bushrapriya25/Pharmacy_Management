@@ -1,14 +1,14 @@
 package PharmacyManagement;
 
-
 import javax.swing.*;
-public class SignupPage  extends JPanel{
 
+public class SignupPage extends JPanel {
 
     public JButton create, signin;
     JTextField email, name;
     JPasswordField password;
-    public SignupPage (){
+
+    public SignupPage() {
         setLayout(null);
         setSize(900, 600);
 
@@ -23,8 +23,6 @@ public class SignupPage  extends JPanel{
         name = new JTextField();
         add(name);
         name.setBounds(300, 140, 300, 40);
-
-
 
         JLabel label2 = new JLabel("Email");
         add(label2);
@@ -44,21 +42,22 @@ public class SignupPage  extends JPanel{
 
         create = new JButton("Create");
         add(create);
-        create.addActionListener(l->signupUser());
+        create.addActionListener(l -> signupUser());
         create.setBounds(300, 410, 300, 32);
 
         signin = new JButton("Already have an account? Signin.");
         add(signin);
         signin.setBounds(300, 520, 300, 30);
     }
-    public boolean signupUser(){
+
+    public boolean signupUser() {
         String a = this.name.getText();
         String b = this.email.getText();
         String c = String.valueOf(this.password.getPassword());
-        System.out.println(a+" "+b+" "+c);
-        String query = "INSERT INTO `user` (`name`, `email`, `password`) VALUES ('"+ a +"', '"+b+"', '"+c+"')";
+        System.out.println(a + " " + b + " " + c);
+        String query = "INSERT INTO `users` (`name`, `email`, `password`) VALUES ('" + a + "', '" + b + "', '" + c + "')";
 
-        if(c.length()<8){
+        if (c.length() < 8) {
             return false;
         }
 
@@ -67,18 +66,10 @@ public class SignupPage  extends JPanel{
             dbConnect.statement.executeUpdate(query);
             System.out.println("success");
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
-        	return false;
+            return false;
         }
     }
 
 }
-	
-	
-	
-	
-	
-	
-	
-
